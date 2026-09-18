@@ -1,22 +1,16 @@
-# High Plains Aerial Imaging — Website Organizer
+# High Plains Aerial Imaging — Website Command Center V2.4
 
-A free, browser-based website planning dashboard for highplainsaerialimagingllc.com.
+Free GitHub Pages-ready organizer for highplainsaerialimagingllc.com.
 
-## Features
-- Dashboard with page/service/task counts
-- Drag-and-drop page ordering
-- Page status and priority
+Features:
+- Website page/status manager
 - Service organizer
-- Website task tracker
-- SEO keyword organizer
-- Export/import JSON plan
-- Local browser storage
-- GitHub Pages-ready: one `index.html` file
+- Photo & video asset tracker
+- Content manager
+- Wyoming-focused SEO keyword map
+- Leads/projects tracker
+- Export/import JSON
+- Browser local storage
 
 ## GitHub Pages
-1. Create a new GitHub repository.
-2. Upload `index.html` and this README.
-3. Repository Settings → Pages.
-4. Source: Deploy from a branch.
-5. Branch: `main`, folder: `/(root)`.
-6. Save and wait for GitHub to publish the site.
+Replace the repository's `index.html` with the V2.4 `index.html`, commit the change, and GitHub Pages will rebuild the site.

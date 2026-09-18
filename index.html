@@ -3,119 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>High Plains Aerial Imaging — Website Organizer</title>
+<title>High Plains Aerial Imaging — Website Command Center</title>
 <style>
-:root{--bg:#f4f6f8;--panel:#fff;--ink:#18212b;--muted:#65717d;--line:#dce2e7;--accent:#1f5f8b;--accent2:#c58b32;--ok:#2d7a4b;--warn:#b16b18;--shadow:0 8px 24px rgba(20,35,50,.08)}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:linear-gradient(135deg,#123c59,#1f5f8b);color:#fff;padding:28px 5vw;display:flex;justify-content:space-between;gap:20px;align-items:center}
-h1{margin:0 0 5px;font-size:28px}.sub{opacity:.85}.badge{background:rgba(255,255,255,.14);padding:9px 12px;border-radius:20px;font-size:13px}
-nav{background:#fff;border-bottom:1px solid var(--line);padding:10px 5vw;display:flex;gap:8px;flex-wrap:wrap}
-nav button,.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:8px;cursor:pointer}
-nav button.active,.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-main{max-width:1400px;margin:26px auto;padding:0 20px}.view{display:none}.view.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
-.stat{font-size:28px;font-weight:700}.label{color:var(--muted);font-size:13px;margin-top:4px}
-.two{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
-h2{margin:0 0 14px;font-size:20px} h3{margin:0 0 8px}.muted{color:var(--muted)}
-.list{display:flex;flex-direction:column;gap:9px}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#fff}
-.status{font-size:12px;padding:4px 8px;border-radius:12px;background:#edf2f5}.done{background:#e6f4eb;color:var(--ok)}.todo{background:#fff3df;color:var(--warn)}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbar input,.toolbar select,.form input,.form textarea,.form select{padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff}
-.toolbar input{min-width:240px}.table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.table th,.table td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}.table th{font-size:12px;color:var(--muted);text-transform:uppercase}
-.page-row{cursor:grab}.dragging{opacity:.5}.pill{display:inline-block;background:#edf3f7;color:#31536b;padding:4px 8px;border-radius:12px;font-size:12px;margin:2px}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form .full{grid-column:1/-1}.form textarea{min-height:90px;width:100%}.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
-.help{line-height:1.6}.help code{background:#eef2f5;padding:2px 5px;border-radius:4px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}header{padding:22px}.stat{font-size:24px}}
+:root{--bg:#f3f5f7;--panel:#fff;--ink:#17212b;--muted:#687582;--line:#d9e0e6;--blue:#1f5f8b;--blue2:#164766;--gold:#b77a20;--green:#2e7d50;--shadow:0 6px 18px rgba(20,35,50,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(135deg,#123c59,#21658f);color:#fff;padding:22px 4vw;display:flex;align-items:center;justify-content:space-between;gap:20px}
+h1{margin:0;font-size:25px}.subtitle{opacity:.86;margin-top:3px}.version{background:#ffffff1f;padding:7px 11px;border-radius:18px;font-size:12px}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:9px 4vw;display:flex;gap:7px;flex-wrap:wrap;position:sticky;top:0;z-index:3}
+nav button,.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 11px;cursor:pointer;color:var(--ink)}nav button.active,.primary{background:var(--blue)!important;color:#fff!important;border-color:var(--blue)!important}
+main{max-width:1450px;margin:22px auto;padding:0 18px}.view{display:none}.view.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px;box-shadow:var(--shadow)}.stat{font-size:25px;font-weight:700}.label{color:var(--muted);font-size:12px}.two{display:grid;grid-template-columns:1.35fr 1fr;gap:15px;margin-top:15px}
+h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 6px}.muted{color:var(--muted)}.list{display:flex;flex-direction:column;gap:8px}.item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.status,.pill{font-size:11px;border-radius:14px;padding:4px 8px;background:#edf1f4}.high{background:#fff1dc;color:#9a6217}.done{background:#e7f4eb;color:var(--green)}
+.toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.toolbar input,.toolbar select,.form input,.form textarea,.form select{border:1px solid var(--line);border-radius:7px;padding:8px;background:#fff}.toolbar input{min-width:230px}
+.table{width:100%;border-collapse:collapse;background:#fff}.table th,.table td{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}.table th{font-size:11px;text-transform:uppercase;color:var(--muted)}code{background:#eef2f5;padding:2px 4px;border-radius:4px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}.form textarea{min-height:75px;width:100%}.actions{display:flex;gap:7px;justify-content:flex-end;margin-top:12px}.section-gap{margin-top:15px}.bar{height:8px;background:#e8edf0;border-radius:9px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--blue)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.form{grid-template-columns:1fr}.full{grid-column:auto}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}header{padding:18px}.version{display:none}}
 </style>
 </head>
 <body>
-<header>
-<div><h1>High Plains Aerial Imaging LLC</h1><div class="sub">Website Organizer • highplainsaerialimagingllc.com</div></div>
-<div class="badge">V2.3 Planning Dashboard</div>
-</header>
+<header><div><h1>High Plains Aerial Imaging LLC</h1><div class="subtitle">Website Command Center • highplainsaerialimagingllc.com</div></div><div class="version">Website V2.4</div></header>
 <nav id="nav"></nav>
 <main>
 <section id="dashboard" class="view active"></section>
-<section id="pages" class="view"></section>
+<section id="website" class="view"></section>
 <section id="services" class="view"></section>
-<section id="tasks" class="view"></section>
+<section id="media" class="view"></section>
+<section id="content" class="view"></section>
 <section id="seo" class="view"></section>
+<section id="leads" class="view"></section>
 <section id="settings" class="view"></section>
 </main>
 <script>
-const seed={
+const starter={
 pages:[
-{id:1,name:"Home",slug:"/",status:"Planned",priority:"High",purpose:"Clear value proposition, service pathways, proof, and quote CTA."},
-{id:2,name:"Services",slug:"/services/",status:"Planned",priority:"High",purpose:"Organize all core commercial, agricultural, inspection, mapping and media services."},
-{id:3,name:"Agriculture & Drone Spraying",slug:"/services/agriculture/",status:"Planned",priority:"High",purpose:"Crop imaging, spraying, livestock monitoring and agricultural support."},
-{id:4,name:"Oil & Gas",slug:"/services/oil-gas/",status:"Planned",priority:"High",purpose:"Pipeline, facility, thermal and infrastructure inspection."},
-{id:5,name:"Construction",slug:"/services/construction/",status:"Planned",priority:"High",purpose:"Progress monitoring, mapping, thermal imaging and stockpile measurement."},
-{id:6,name:"Thermal Inspections",slug:"/services/thermal/",status:"Planned",priority:"High",purpose:"Thermal inspections for industrial, commercial, agricultural and infrastructure uses."},
-{id:7,name:"Mapping & Photogrammetry",slug:"/services/mapping/",status:"Planned",priority:"High",purpose:"Orthomosaics, 3D models, photogrammetry and site documentation."},
-{id:8,name:"Real Estate",slug:"/services/real-estate/",status:"Planned",priority:"Medium",purpose:"Aerial photography and video for residential and commercial properties."},
-{id:9,name:"Ranching & Livestock",slug:"/services/ranching/",status:"Planned",priority:"Medium",purpose:"Large-acreage visibility, livestock monitoring and ranch documentation."},
-{id:10,name:"About",slug:"/about/",status:"Planned",priority:"Medium",purpose:"Company story, veteran-owned positioning, credentials and safety."},
-{id:11,name:"Projects / Gallery",slug:"/projects/",status:"Planned",priority:"High",purpose:"Proof of work organized by industry and deliverable."},
-{id:12,name:"Service Area",slug:"/service-area/",status:"Planned",priority:"Medium",purpose:"Wyoming coverage and travel/service-radius information."},
-{id:13,name:"FAQ",slug:"/faq/",status:"Planned",priority:"Medium",purpose:"FAA, safety, workflow, deliverables and project questions."},
-{id:14,name:"Contact / Request a Quote",slug:"/contact/",status:"Planned",priority:"High",purpose:"Simple lead form with phone, email and project details."}
+["Home","/","Live","High","Homepage hero, proof, service paths and quote CTA."],
+["Services","/services/","Draft","High","Master service directory."],
+["Agriculture & Drone Spraying","/services/agriculture/","Draft","High","Agricultural drone services and spraying support."],
+["Oil & Gas","/services/oil-gas/","Draft","High","Pipeline, facility and thermal inspection services."],
+["Construction","/services/construction/","Draft","High","Progress monitoring, mapping, thermal and stockpiles."],
+["Thermal Inspections","/services/thermal/","Draft","High","Thermal inspection applications and reporting."],
+["Mapping & Photogrammetry","/services/mapping/","Draft","High","Orthomosaics, 3D models and site documentation."],
+["Real Estate","/services/real-estate/","Draft","Medium","Aerial photography and video."],
+["Ranching & Livestock","/services/ranching/","Draft","Medium","Large-acreage observation and livestock visibility."],
+["About","/about/","Draft","Medium","Company story, credentials and safety."],
+["Projects / Gallery","/projects/","Draft","High","Proof of work by industry."],
+["Service Area","/service-area/","Draft","Medium","Wyoming coverage and travel information."],
+["FAQ","/faq/","Planned","Medium","Common questions, workflow and deliverables."],
+["Contact / Request a Quote","/contact/","Draft","High","Lead form, phone and email."]
 ],
 services:[
-["Agriculture & Drone Spraying","Crop monitoring, application support, field imaging and livestock visibility.","High"],
+["Agriculture & Drone Spraying","Crop imaging, application support, field scouting and livestock visibility.","High"],
 ["Oil & Gas","Pipeline, facility, thermal and infrastructure inspection.","High"],
-["Construction","Progress monitoring, mapping, thermal imaging and stockpile measurements.","High"],
-["Thermal Inspections","Non-contact thermal imaging for finding heat anomalies and documenting assets.","High"],
-["Mapping & Photogrammetry","Orthomosaics, 3D models, site mapping and visual documentation.","High"],
-["Real Estate","Professional aerial photos and video for property marketing.","Medium"],
-["Ranching & Livestock","Large-acreage observation, livestock monitoring and ranch documentation.","Medium"],
-["Roof & Commercial Inspections","High-resolution visual inspection without unnecessary climbs.","Medium"]
+["Construction","Progress monitoring, site mapping, thermal imaging and stockpile measurement.","High"],
+["Thermal Inspections","Non-contact thermal imaging and documentation of heat anomalies.","High"],
+["Mapping & Photogrammetry","Orthomosaics, 3D models, photogrammetry and site documentation.","High"],
+["Real Estate","Professional aerial photography and video.","Medium"],
+["Ranching & Livestock","Large-acreage observation and ranch documentation.","Medium"],
+["Commercial / Roof Inspections","High-resolution visual inspection while reducing unnecessary access hazards.","Medium"]
 ],
-tasks:[
-["Replace oversized website elements with tighter spacing","Design","High","Open"],
-["Build industry-specific service landing pages","Content","High","Open"],
-["Add strong Request a Quote CTA to every major service page","Conversion","High","Open"],
-["Create project gallery filters by industry","Design","Medium","Open"],
-["Add FAQ covering Part 107, insurance, deliverables and safety","Content","Medium","Open"],
-["Add Wyoming service-area page","SEO","Medium","Open"],
-["Add Google-friendly page titles and meta descriptions","SEO","High","Open"],
-["Add before/after inspection examples","Proof","High","Open"],
-["Add thermal inspection examples","Proof","High","Open"],
-["Add agriculture/drone spraying page and compliance note","Content","High","Open"]
+media:[
+["Drone over Wyoming ranch","Ranching","Needed"],["Pipeline inspection","Oil & Gas","Needed"],["Construction progress","Construction","Needed"],["Thermal inspection example","Thermal","Needed"],["Agricultural drone in field","Agriculture","Needed"],["Aerial real estate property","Real Estate","Needed"],["Mapping/orthomosaic example","Mapping","Needed"],["Company/team photo","About","Needed"]
+],
+content:[
+["Home","Hero headline + CTA","Copy","Open"],["Oil & Gas","Inspection service copy","Copy","Open"],["Thermal Inspections","Capabilities + limitations","Copy","Open"],["Construction","Progress monitoring + stockpile copy","Copy","Open"],["Agriculture","Drone spraying service copy","Copy","Open"],["About","Company story + credentials","Copy","Open"],["FAQ","Common client questions","Copy","Open"],["Gallery","Project captions","Copy","Open"]
 ],
 seo:[
-["drone services Wyoming","Homepage / Service Area","High"],
-["commercial drone services Wyoming","Homepage","High"],
-["drone inspections Wyoming","Inspections","High"],
-["thermal drone inspections Wyoming","Thermal Inspections","High"],
-["drone mapping Wyoming","Mapping","High"],
-["construction drone progress monitoring Wyoming","Construction","High"],
-["oil and gas drone inspection Wyoming","Oil & Gas","High"],
-["pipeline drone inspection Wyoming","Oil & Gas","High"],
-["agricultural drone services Wyoming","Agriculture","High"],
-["drone spraying Wyoming","Agriculture","High"],
-["ranch drone services Wyoming","Ranching","Medium"],
-["aerial real estate photography Wyoming","Real Estate","Medium"]
+["drone services Wyoming","Home / Service Area","High"],["commercial drone services Wyoming","Home","High"],["drone inspections Wyoming","Services","High"],["thermal drone inspections Wyoming","Thermal","High"],["drone mapping Wyoming","Mapping","High"],["construction drone progress monitoring Wyoming","Construction","High"],["oil and gas drone inspection Wyoming","Oil & Gas","High"],["pipeline drone inspection Wyoming","Oil & Gas","High"],["agricultural drone services Wyoming","Agriculture","High"],["drone spraying Wyoming","Agriculture","High"],["ranch drone services Wyoming","Ranching","Medium"],["aerial real estate photography Wyoming","Real Estate","Medium"]
+],
+leads:[
+["Website inquiry","General","New","Follow up"],["Oil & Gas prospect","Oil & Gas","Prospect","Contact"],["Construction prospect","Construction","Prospect","Contact"],["Ranch prospect","Ranching","Prospect","Contact"]
 ]};
-let data=JSON.parse(localStorage.getItem("hpOrganizer")||"null")||seed;
-function save(){localStorage.setItem("hpOrganizer",JSON.stringify(data));render()}
-const navItems=[["dashboard","Dashboard"],["pages","Pages"],["services","Services"],["tasks","Tasks"],["seo","SEO"],["settings","Settings"]];
-function initNav(){nav.innerHTML=navItems.map(([id,t],i)=>`<button class="${i===0?'active':''}" onclick="show('${id}',this)">${t}</button>`).join("")}
-function show(id,btn){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");render()}
-function dashboard(){let total=data.pages.length, done=data.pages.filter(x=>x.status==="Live").length, high=data.pages.filter(x=>x.priority==="High").length, open=data.tasks.filter(x=>x[3]!=="Done").length;
-return `<div class="grid"><div class="card"><div class="stat">${total}</div><div class="label">Planned pages</div></div><div class="card"><div class="stat">${done}</div><div class="label">Live pages</div></div><div class="card"><div class="stat">${data.services.length}</div><div class="label">Service groups</div></div><div class="card"><div class="stat">${open}</div><div class="label">Open tasks</div></div></div>
-<div class="two"><div class="card"><h2>Recommended site structure</h2><div class="list">${data.pages.slice(0,8).map(p=>`<div class="item"><div><b>${p.name}</b><div class="muted">${p.slug}</div></div><span class="status ${p.status==='Live'?'done':'todo'}">${p.status}</span></div>`).join("")}</div></div>
-<div class="card"><h2>Priority focus</h2><div class="list">${data.tasks.filter(x=>x[2]==="High").slice(0,6).map(t=>`<div class="item"><div>${t[0]}<div class="muted">${t[1]}</div></div><span class="status todo">High</span></div>`).join("")}</div></div></div>`}
-function pages(){return `<div class="card"><h2>Pages & Navigation</h2><p class="muted">Drag rows to reorder your main website structure. Status and priority can be changed below.</p><table class="table"><thead><tr><th>Page</th><th>URL</th><th>Purpose</th><th>Status</th><th>Priority</th></tr></thead><tbody id="pageBody">${data.pages.map((p,i)=>`<tr class="page-row" draggable="true" data-i="${i}"><td><b>${p.name}</b></td><td><code>${p.slug}</code></td><td>${p.purpose}</td><td><select onchange="data.pages[${i}].status=this.value;save()"><option ${p.status==="Planned"?"selected":""}>Planned</option><option ${p.status==="Draft"?"selected":""}>Draft</option><option ${p.status==="Live"?"selected":""}>Live</option></select></td><td><select onchange="data.pages[${i}].priority=this.value;save()"><option ${p.priority==="High"?"selected":""}>High</option><option ${p.priority==="Medium"?"selected":""}>Medium</option><option ${p.priority==="Low"?"selected":""}>Low</option></select></td></tr>`).join("")}</tbody></table></div>`}
-function services(){return `<div class="card"><h2>Service Organizer</h2><div class="grid">${data.services.map((s,i)=>`<div class="card"><h3>${s[0]}</h3><p class="muted">${s[1]}</p><span class="pill">${s[2]} priority</span><button class="btn" style="float:right" onclick="data.services.splice(${i},1);save()">Remove</button></div>`).join("")}</div></div>`}
-function tasks(){return `<div class="card"><h2>Website Task List</h2><div class="toolbar"><select id="taskFilter" onchange="renderTasks()"><option>All</option><option>Open</option><option>Done</option></select><input id="taskSearch" placeholder="Search tasks..." oninput="renderTasks()"></div><div id="taskList"></div></div>`}
-function renderTasks(){let f=document.getElementById("taskFilter")?.value||"All", q=(document.getElementById("taskSearch")?.value||"").toLowerCase();let arr=data.tasks.filter(t=>(f==="All"||t[3]===f)&&t[0].toLowerCase().includes(q));document.getElementById("taskList").innerHTML=arr.map((t)=>{let i=data.tasks.indexOf(t);return `<div class="item"><div><b>${t[0]}</b><div class="muted">${t[1]} • ${t[2]} priority</div></div><button class="btn ${t[3]==="Done"?"":"primary"}" onclick="data.tasks[${i}][3]=data.tasks[${i}][3]==='Done'?'Open':'Done';save()">${t[3]}</button></div>`}).join("")}
-function seo(){return `<div class="card"><h2>SEO Keyword Organizer</h2><p class="muted">Use these as starting points; write natural, useful page copy rather than keyword stuffing.</p><table class="table"><thead><tr><th>Keyword</th><th>Target page</th><th>Priority</th></tr></thead><tbody>${data.seo.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><span class="pill">${x[2]}</span></td></tr>`).join("")}</tbody></table></div>`}
-function settings(){return `<div class="card"><h2>Organizer Controls</h2><p class="help">Your organizer saves changes in this browser using <code>localStorage</code>. It does not alter your live website.</p><div class="actions"><button class="btn primary" onclick="exportData()">Export Plan</button><button class="btn" onclick="document.getElementById('importFile').click()">Import Plan</button><button class="btn" onclick="if(confirm('Reset organizer to the starter plan?')){localStorage.removeItem('hpOrganizer');location.reload()}">Reset</button></div><input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"><hr><h3>GitHub deployment</h3><ol class="help"><li>Create a GitHub repository named <code>high-plains-website-organizer</code>.</li><li>Upload <code>index.html</code> from this app.</li><li>Open the repo's <b>Settings → Pages</b>.</li><li>Set Source to <b>Deploy from a branch</b>, choose <code>main</code> and <code>/(root)</code>, then Save.</li><li>GitHub will publish a free web app URL after deployment.</li></ol></div>`}
-function render(){dashboardEl.innerHTML=dashboard();pagesEl.innerHTML=pages();servicesEl.innerHTML=services();tasksEl.innerHTML=tasks();seoEl.innerHTML=seo();settingsEl.innerHTML=settings();if(document.getElementById("taskList"))renderTasks();wireDrag()}
-function wireDrag(){document.querySelectorAll(".page-row").forEach(row=>{row.addEventListener("dragstart",()=>row.classList.add("dragging"));row.addEventListener("dragend",()=>{row.classList.remove("dragging");save()});row.addEventListener("dragover",e=>{e.preventDefault();let d=document.querySelector(".dragging");if(d&&d!==row){let rows=[...row.parentNode.children],di=rows.indexOf(d),ri=rows.indexOf(row);if(di<ri)row.after(d);else row.before(d);data.pages.splice(ri,0,...data.pages.splice(di,1))}})})}
-function exportData(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="high-plains-website-plan.json";a.click()}
-function importData(e){let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save()}catch{alert("Invalid organizer file.")}};r.readAsText(e.target.files[0])}
-const dashboardEl=document.getElementById("dashboard"),pagesEl=document.getElementById("pages"),servicesEl=document.getElementById("services"),tasksEl=document.getElementById("tasks"),seoEl=document.getElementById("seo"),settingsEl=document.getElementById("settings");
-initNav();render();
+let d=JSON.parse(localStorage.getItem("hpV24")||"null")||starter;
+const tabs=[["dashboard","Dashboard"],["website","Website"],["services","Services"],["media","Photos & Video"],["content","Content"],["seo","SEO"],["leads","Leads / Projects"],["settings","Settings"]];
+function save(){localStorage.setItem("hpV24",JSON.stringify(d));render()}
+function nav(){document.getElementById("nav").innerHTML=tabs.map((x,i)=>`<button class="${i===0?'active':''}" onclick="show('${x[0]}',this)">${x[1]}</button>`).join("")}
+function show(id,b){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()}
+function dash(){let live=d.pages.filter(x=>x[2]==="Live").length, doneC=d.content.filter(x=>x[3]==="Done").length, doneM=d.media.filter(x=>x[2]==="Done").length, open=d.leads.filter(x=>x[2]!=="Closed").length, pct=Math.round((live/d.pages.length)*100);
+return `<div class="grid"><div class="card"><div class="stat">${d.pages.length}</div><div class="label">Website pages</div></div><div class="card"><div class="stat">${live}</div><div class="label">Live pages</div></div><div class="card"><div class="stat">${d.services.length}</div><div class="label">Service groups</div></div><div class="card"><div class="stat">${open}</div><div class="label">Open leads/projects</div></div></div>
+<div class="two"><div class="card"><h2>Website progress</h2><div class="bar"><span style="width:${pct}%"></span></div><p class="muted">${pct}% of pages marked Live.</p><div class="list">${d.pages.slice(0,7).map(x=>`<div class="item"><div><b>${x[0]}</b><div class="muted">${x[1]}</div></div><span class="status ${x[2]==="Live"?"done":"high"}">${x[2]}</span></div>`).join("")}</div></div>
+<div class="card"><h2>Next priorities</h2><div class="list">${d.content.filter(x=>x[3]!=="Done").slice(0,6).map(x=>`<div class="item"><div><b>${x[1]}</b><div class="muted">${x[0]} • ${x[2]}</div></div><span class="status high">Open</span></div>`).join("")}</div></div></div>`}
+function website(){return `<div class="card"><h2>Website Pages</h2><div class="toolbar"><input id="psearch" placeholder="Search pages..." oninput="renderWebsite()"><select id="pfilter" onchange="renderWebsite()"><option>All</option><option>Live</option><option>Draft</option><option>Planned</option></select></div><div id="plist"></div></div>`}
+function renderWebsite(){let q=(psearch?.value||"").toLowerCase(),f=pfilter?.value||"All";let a=d.pages.filter(x=>x[0].toLowerCase().includes(q)&&(f==="All"||x[2]===f));document.getElementById("plist").innerHTML=`<table class="table"><thead><tr><th>Page</th><th>URL</th><th>Status</th><th>Priority</th><th>Purpose</th></tr></thead><tbody>${a.map(x=>{let i=d.pages.indexOf(x);return `<tr><td><b>${x[0]}</b></td><td><code>${x[1]}</code></td><td><select onchange="d.pages[${i}][2]=this.value;save()"><option ${x[2]==="Live"?"selected":""}>Live</option><option ${x[2]==="Draft"?"selected":""}>Draft</option><option ${x[2]==="Planned"?"selected":""}>Planned</option></select></td><td>${x[3]}</td><td>${x[4]}</td></tr>`}).join("")}</tbody></table>`}
+function services(){return `<div class="card"><h2>Services</h2><div class="grid">${d.services.map((x,i)=>`<div class="card"><h3>${x[0]}</h3><p class="muted">${x[1]}</p><span class="pill">${x[2]} priority</span></div>`).join("")}</div></div>`}
+function media(){return `<div class="card"><h2>Photo & Video Manager</h2><p class="muted">Track the visual assets needed to make the website feel real and industry-specific.</p><table class="table"><thead><tr><th>Asset</th><th>Page</th><th>Status</th></tr></thead><tbody>${d.media.map((x,i)=>`<tr><td><b>${x[0]}</b></td><td>${x[1]}</td><td><button class="btn ${x[2]==="Done"?"":"primary"}" onclick="d.media[${i}][2]=d.media[${i}][2]==='Done'?'Needed':'Done';save()">${x[2]}</button></td></tr>`).join("")}</tbody></table></div>`}
+function content(){return `<div class="card"><h2>Content Manager</h2><table class="table"><thead><tr><th>Page</th><th>Content item</th><th>Type</th><th>Status</th></tr></thead><tbody>${d.content.map((x,i)=>`<tr><td>${x[0]}</td><td><b>${x[1]}</b></td><td>${x[2]}</td><td><button class="btn ${x[3]==="Done"?"":"primary"}" onclick="d.content[${i}][3]=d.content[${i}][3]==='Done'?'Open':'Done';save()">${x[3]}</button></td></tr>`).join("")}</tbody></table></div>`}
+function seo(){return `<div class="card"><h2>SEO Manager</h2><p class="muted">Starting Wyoming-focused keyword map. Use keywords naturally in useful page copy, titles and descriptions.</p><table class="table"><thead><tr><th>Keyword</th><th>Target page</th><th>Priority</th></tr></thead><tbody>${d.seo.map(x=>`<tr><td><b>${x[0]}</b></td><td>${x[1]}</td><td><span class="pill">${x[2]}</span></td></tr>`).join("")}</tbody></table></div>`}
+function leads(){return `<div class="card"><h2>Leads / Projects</h2><table class="table"><thead><tr><th>Lead / Project</th><th>Industry</th><th>Status</th><th>Next action</th></tr></thead><tbody>${d.leads.map((x,i)=>`<tr><td><b>${x[0]}</b></td><td>${x[1]}</td><td><select onchange="d.leads[${i}][2]=this.value;save()">${["New","Prospect","Quoted","Won","Closed"].map(s=>`<option ${x[2]===s?"selected":""}>${s}</option>`).join("")}</select></td><td>${x[3]}</td></tr>`).join("")}</tbody></table></div>`}
+function settings(){return `<div class="card"><h2>Command Center Settings</h2><p class="muted">Your data is stored in this browser. It does not change your live High Plains website.</p><div class="actions"><button class="btn primary" onclick="exportPlan()">Export Plan</button><button class="btn" onclick="document.getElementById('imp').click()">Import Plan</button><button class="btn" onclick="if(confirm('Reset V2.4 data?')){localStorage.removeItem('hpV24');location.reload()}">Reset</button></div><input id="imp" type="file" accept=".json" hidden onchange="importPlan(event)"><div class="section-gap"><h3>GitHub Pages</h3><p class="muted">Replace the repository's <code>index.html</code> with this V2.4 file, commit the change, and GitHub Pages will rebuild the organizer.</p><p><b>Repository:</b> high-plains-website-organizer-</p></div></div>`}
+function exportPlan(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:"application/json"}));a.download="high-plains-command-center-v2.4.json";a.click()}
+function importPlan(e){let r=new FileReader();r.onload=()=>{try{d=JSON.parse(r.result);save()}catch{alert("Invalid plan file.")}};r.readAsText(e.target.files[0])}
+function render(){dashboard.innerHTML=dash();websiteEl.innerHTML=website();servicesEl.innerHTML=services();mediaEl.innerHTML=media();contentEl.innerHTML=content();seoEl.innerHTML=seo();leadsEl.innerHTML=leads();settingsEl.innerHTML=settings();if(document.getElementById("plist"))renderWebsite()}
+const dashboard=document.getElementById("dashboard"),websiteEl=document.getElementById("website"),servicesEl=document.getElementById("services"),mediaEl=document.getElementById("media"),contentEl=document.getElementById("content"),seoEl=document.getElementById("seo"),leadsEl=document.getElementById("leads"),settingsEl=document.getElementById("settings");
+nav();render();
 </script>
-</body></html>
+</body>
+</html>
