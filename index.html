@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>High Plains Aerial Imaging — Website Organizer</title>
+<style>
+:root{--bg:#f4f6f8;--panel:#fff;--ink:#18212b;--muted:#65717d;--line:#dce2e7;--accent:#1f5f8b;--accent2:#c58b32;--ok:#2d7a4b;--warn:#b16b18;--shadow:0 8px 24px rgba(20,35,50,.08)}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#123c59,#1f5f8b);color:#fff;padding:28px 5vw;display:flex;justify-content:space-between;gap:20px;align-items:center}
+h1{margin:0 0 5px;font-size:28px}.sub{opacity:.85}.badge{background:rgba(255,255,255,.14);padding:9px 12px;border-radius:20px;font-size:13px}
+nav{background:#fff;border-bottom:1px solid var(--line);padding:10px 5vw;display:flex;gap:8px;flex-wrap:wrap}
+nav button,.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:8px;cursor:pointer}
+nav button.active,.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1400px;margin:26px auto;padding:0 20px}.view{display:none}.view.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.stat{font-size:28px;font-weight:700}.label{color:var(--muted);font-size:13px;margin-top:4px}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
+h2{margin:0 0 14px;font-size:20px} h3{margin:0 0 8px}.muted{color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:9px}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.status{font-size:12px;padding:4px 8px;border-radius:12px;background:#edf2f5}.done{background:#e6f4eb;color:var(--ok)}.todo{background:#fff3df;color:var(--warn)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbar input,.toolbar select,.form input,.form textarea,.form select{padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.toolbar input{min-width:240px}.table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}.table th,.table td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}.table th{font-size:12px;color:var(--muted);text-transform:uppercase}
+.page-row{cursor:grab}.dragging{opacity:.5}.pill{display:inline-block;background:#edf3f7;color:#31536b;padding:4px 8px;border-radius:12px;font-size:12px;margin:2px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form .full{grid-column:1/-1}.form textarea{min-height:90px;width:100%}.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.help{line-height:1.6}.help code{background:#eef2f5;padding:2px 5px;border-radius:4px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}header{padding:22px}.stat{font-size:24px}}
+</style>
+</head>
+<body>
+<header>
+<div><h1>High Plains Aerial Imaging LLC</h1><div class="sub">Website Organizer • highplainsaerialimagingllc.com</div></div>
+<div class="badge">V2.3 Planning Dashboard</div>
+</header>
+<nav id="nav"></nav>
+<main>
+<section id="dashboard" class="view active"></section>
+<section id="pages" class="view"></section>
+<section id="services" class="view"></section>
+<section id="tasks" class="view"></section>
+<section id="seo" class="view"></section>
+<section id="settings" class="view"></section>
+</main>
+<script>
+const seed={
+pages:[
+{id:1,name:"Home",slug:"/",status:"Planned",priority:"High",purpose:"Clear value proposition, service pathways, proof, and quote CTA."},
+{id:2,name:"Services",slug:"/services/",status:"Planned",priority:"High",purpose:"Organize all core commercial, agricultural, inspection, mapping and media services."},
+{id:3,name:"Agriculture & Drone Spraying",slug:"/services/agriculture/",status:"Planned",priority:"High",purpose:"Crop imaging, spraying, livestock monitoring and agricultural support."},
+{id:4,name:"Oil & Gas",slug:"/services/oil-gas/",status:"Planned",priority:"High",purpose:"Pipeline, facility, thermal and infrastructure inspection."},
+{id:5,name:"Construction",slug:"/services/construction/",status:"Planned",priority:"High",purpose:"Progress monitoring, mapping, thermal imaging and stockpile measurement."},
+{id:6,name:"Thermal Inspections",slug:"/services/thermal/",status:"Planned",priority:"High",purpose:"Thermal inspections for industrial, commercial, agricultural and infrastructure uses."},
+{id:7,name:"Mapping & Photogrammetry",slug:"/services/mapping/",status:"Planned",priority:"High",purpose:"Orthomosaics, 3D models, photogrammetry and site documentation."},
+{id:8,name:"Real Estate",slug:"/services/real-estate/",status:"Planned",priority:"Medium",purpose:"Aerial photography and video for residential and commercial properties."},
+{id:9,name:"Ranching & Livestock",slug:"/services/ranching/",status:"Planned",priority:"Medium",purpose:"Large-acreage visibility, livestock monitoring and ranch documentation."},
+{id:10,name:"About",slug:"/about/",status:"Planned",priority:"Medium",purpose:"Company story, veteran-owned positioning, credentials and safety."},
+{id:11,name:"Projects / Gallery",slug:"/projects/",status:"Planned",priority:"High",purpose:"Proof of work organized by industry and deliverable."},
+{id:12,name:"Service Area",slug:"/service-area/",status:"Planned",priority:"Medium",purpose:"Wyoming coverage and travel/service-radius information."},
+{id:13,name:"FAQ",slug:"/faq/",status:"Planned",priority:"Medium",purpose:"FAA, safety, workflow, deliverables and project questions."},
+{id:14,name:"Contact / Request a Quote",slug:"/contact/",status:"Planned",priority:"High",purpose:"Simple lead form with phone, email and project details."}
+],
+services:[
+["Agriculture & Drone Spraying","Crop monitoring, application support, field imaging and livestock visibility.","High"],
+["Oil & Gas","Pipeline, facility, thermal and infrastructure inspection.","High"],
+["Construction","Progress monitoring, mapping, thermal imaging and stockpile measurements.","High"],
+["Thermal Inspections","Non-contact thermal imaging for finding heat anomalies and documenting assets.","High"],
+["Mapping & Photogrammetry","Orthomosaics, 3D models, site mapping and visual documentation.","High"],
+["Real Estate","Professional aerial photos and video for property marketing.","Medium"],
+["Ranching & Livestock","Large-acreage observation, livestock monitoring and ranch documentation.","Medium"],
+["Roof & Commercial Inspections","High-resolution visual inspection without unnecessary climbs.","Medium"]
+],
+tasks:[
+["Replace oversized website elements with tighter spacing","Design","High","Open"],
+["Build industry-specific service landing pages","Content","High","Open"],
+["Add strong Request a Quote CTA to every major service page","Conversion","High","Open"],
+["Create project gallery filters by industry","Design","Medium","Open"],
+["Add FAQ covering Part 107, insurance, deliverables and safety","Content","Medium","Open"],
+["Add Wyoming service-area page","SEO","Medium","Open"],
+["Add Google-friendly page titles and meta descriptions","SEO","High","Open"],
+["Add before/after inspection examples","Proof","High","Open"],
+["Add thermal inspection examples","Proof","High","Open"],
+["Add agriculture/drone spraying page and compliance note","Content","High","Open"]
+],
+seo:[
+["drone services Wyoming","Homepage / Service Area","High"],
+["commercial drone services Wyoming","Homepage","High"],
+["drone inspections Wyoming","Inspections","High"],
+["thermal drone inspections Wyoming","Thermal Inspections","High"],
+["drone mapping Wyoming","Mapping","High"],
+["construction drone progress monitoring Wyoming","Construction","High"],
+["oil and gas drone inspection Wyoming","Oil & Gas","High"],
+["pipeline drone inspection Wyoming","Oil & Gas","High"],
+["agricultural drone services Wyoming","Agriculture","High"],
+["drone spraying Wyoming","Agriculture","High"],
+["ranch drone services Wyoming","Ranching","Medium"],
+["aerial real estate photography Wyoming","Real Estate","Medium"]
+]};
+let data=JSON.parse(localStorage.getItem("hpOrganizer")||"null")||seed;
+function save(){localStorage.setItem("hpOrganizer",JSON.stringify(data));render()}
+const navItems=[["dashboard","Dashboard"],["pages","Pages"],["services","Services"],["tasks","Tasks"],["seo","SEO"],["settings","Settings"]];
+function initNav(){nav.innerHTML=navItems.map(([id,t],i)=>`<button class="${i===0?'active':''}" onclick="show('${id}',this)">${t}</button>`).join("")}
+function show(id,btn){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");render()}
+function dashboard(){let total=data.pages.length, done=data.pages.filter(x=>x.status==="Live").length, high=data.pages.filter(x=>x.priority==="High").length, open=data.tasks.filter(x=>x[3]!=="Done").length;
+return `<div class="grid"><div class="card"><div class="stat">${total}</div><div class="label">Planned pages</div></div><div class="card"><div class="stat">${done}</div><div class="label">Live pages</div></div><div class="card"><div class="stat">${data.services.length}</div><div class="label">Service groups</div></div><div class="card"><div class="stat">${open}</div><div class="label">Open tasks</div></div></div>
+<div class="two"><div class="card"><h2>Recommended site structure</h2><div class="list">${data.pages.slice(0,8).map(p=>`<div class="item"><div><b>${p.name}</b><div class="muted">${p.slug}</div></div><span class="status ${p.status==='Live'?'done':'todo'}">${p.status}</span></div>`).join("")}</div></div>
+<div class="card"><h2>Priority focus</h2><div class="list">${data.tasks.filter(x=>x[2]==="High").slice(0,6).map(t=>`<div class="item"><div>${t[0]}<div class="muted">${t[1]}</div></div><span class="status todo">High</span></div>`).join("")}</div></div></div>`}
+function pages(){return `<div class="card"><h2>Pages & Navigation</h2><p class="muted">Drag rows to reorder your main website structure. Status and priority can be changed below.</p><table class="table"><thead><tr><th>Page</th><th>URL</th><th>Purpose</th><th>Status</th><th>Priority</th></tr></thead><tbody id="pageBody">${data.pages.map((p,i)=>`<tr class="page-row" draggable="true" data-i="${i}"><td><b>${p.name}</b></td><td><code>${p.slug}</code></td><td>${p.purpose}</td><td><select onchange="data.pages[${i}].status=this.value;save()"><option ${p.status==="Planned"?"selected":""}>Planned</option><option ${p.status==="Draft"?"selected":""}>Draft</option><option ${p.status==="Live"?"selected":""}>Live</option></select></td><td><select onchange="data.pages[${i}].priority=this.value;save()"><option ${p.priority==="High"?"selected":""}>High</option><option ${p.priority==="Medium"?"selected":""}>Medium</option><option ${p.priority==="Low"?"selected":""}>Low</option></select></td></tr>`).join("")}</tbody></table></div>`}
+function services(){return `<div class="card"><h2>Service Organizer</h2><div class="grid">${data.services.map((s,i)=>`<div class="card"><h3>${s[0]}</h3><p class="muted">${s[1]}</p><span class="pill">${s[2]} priority</span><button class="btn" style="float:right" onclick="data.services.splice(${i},1);save()">Remove</button></div>`).join("")}</div></div>`}
+function tasks(){return `<div class="card"><h2>Website Task List</h2><div class="toolbar"><select id="taskFilter" onchange="renderTasks()"><option>All</option><option>Open</option><option>Done</option></select><input id="taskSearch" placeholder="Search tasks..." oninput="renderTasks()"></div><div id="taskList"></div></div>`}
+function renderTasks(){let f=document.getElementById("taskFilter")?.value||"All", q=(document.getElementById("taskSearch")?.value||"").toLowerCase();let arr=data.tasks.filter(t=>(f==="All"||t[3]===f)&&t[0].toLowerCase().includes(q));document.getElementById("taskList").innerHTML=arr.map((t)=>{let i=data.tasks.indexOf(t);return `<div class="item"><div><b>${t[0]}</b><div class="muted">${t[1]} • ${t[2]} priority</div></div><button class="btn ${t[3]==="Done"?"":"primary"}" onclick="data.tasks[${i}][3]=data.tasks[${i}][3]==='Done'?'Open':'Done';save()">${t[3]}</button></div>`}).join("")}
+function seo(){return `<div class="card"><h2>SEO Keyword Organizer</h2><p class="muted">Use these as starting points; write natural, useful page copy rather than keyword stuffing.</p><table class="table"><thead><tr><th>Keyword</th><th>Target page</th><th>Priority</th></tr></thead><tbody>${data.seo.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><span class="pill">${x[2]}</span></td></tr>`).join("")}</tbody></table></div>`}
+function settings(){return `<div class="card"><h2>Organizer Controls</h2><p class="help">Your organizer saves changes in this browser using <code>localStorage</code>. It does not alter your live website.</p><div class="actions"><button class="btn primary" onclick="exportData()">Export Plan</button><button class="btn" onclick="document.getElementById('importFile').click()">Import Plan</button><button class="btn" onclick="if(confirm('Reset organizer to the starter plan?')){localStorage.removeItem('hpOrganizer');location.reload()}">Reset</button></div><input id="importFile" type="file" accept=".json" style="display:none" onchange="importData(event)"><hr><h3>GitHub deployment</h3><ol class="help"><li>Create a GitHub repository named <code>high-plains-website-organizer</code>.</li><li>Upload <code>index.html</code> from this app.</li><li>Open the repo's <b>Settings → Pages</b>.</li><li>Set Source to <b>Deploy from a branch</b>, choose <code>main</code> and <code>/(root)</code>, then Save.</li><li>GitHub will publish a free web app URL after deployment.</li></ol></div>`}
+function render(){dashboardEl.innerHTML=dashboard();pagesEl.innerHTML=pages();servicesEl.innerHTML=services();tasksEl.innerHTML=tasks();seoEl.innerHTML=seo();settingsEl.innerHTML=settings();if(document.getElementById("taskList"))renderTasks();wireDrag()}
+function wireDrag(){document.querySelectorAll(".page-row").forEach(row=>{row.addEventListener("dragstart",()=>row.classList.add("dragging"));row.addEventListener("dragend",()=>{row.classList.remove("dragging");save()});row.addEventListener("dragover",e=>{e.preventDefault();let d=document.querySelector(".dragging");if(d&&d!==row){let rows=[...row.parentNode.children],di=rows.indexOf(d),ri=rows.indexOf(row);if(di<ri)row.after(d);else row.before(d);data.pages.splice(ri,0,...data.pages.splice(di,1))}})})}
+function exportData(){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="high-plains-website-plan.json";a.click()}
+function importData(e){let r=new FileReader();r.onload=()=>{try{data=JSON.parse(r.result);save()}catch{alert("Invalid organizer file.")}};r.readAsText(e.target.files[0])}
+const dashboardEl=document.getElementById("dashboard"),pagesEl=document.getElementById("pages"),servicesEl=document.getElementById("services"),tasksEl=document.getElementById("tasks"),seoEl=document.getElementById("seo"),settingsEl=document.getElementById("settings");
+initNav();render();
+</script>
+</body></html>
