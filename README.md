@@ -1,16 +1,10 @@
-# High Plains Aerial Imaging — Website Command Center V2.4
+# High Plains Aerial Imaging — Website Command Center V2.5
 
-Free GitHub Pages-ready organizer for highplainsaerialimagingllc.com.
+Free GitHub Pages-ready website organizer for highplainsaerialimagingllc.com.
 
-Features:
-- Website page/status manager
-- Service organizer
-- Photo & video asset tracker
-- Content manager
-- Wyoming-focused SEO keyword map
-- Leads/projects tracker
-- Export/import JSON
-- Browser local storage
+V2.5 adds a master Website Build Checklist with categories for Website, Visuals, Content, SEO, and Testing. Checklist items can be moved through Not Started, In Progress, Ready, Done, and Live.
+
+Also includes website page status, services, photo/video tracking, content tracking, SEO keywords, leads/projects, and JSON export/import.
 
 ## GitHub Pages
-Replace the repository's `index.html` with the V2.4 `index.html`, commit the change, and GitHub Pages will rebuild the site.
+Replace the existing repository `index.html` with this version, commit to `main`, and GitHub Pages will rebuild the site.
